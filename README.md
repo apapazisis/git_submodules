@@ -24,7 +24,7 @@ useful. A couple of advantages of using submodules:
 
 ### Basics
 
-When you add a submodule in Git, you don't add the **code** of the
+When you add a submodule in Git, you add the **code** of the
 submodule to the main repository, you only add **information about the
 submodule** that is added to the main repository. This information
 describes which **commit the submodule is pointing** at. This way, the
@@ -58,13 +58,12 @@ the submodule to the origin.
 If a new submodule is created by one person, the other people in the
 team need to initiate this submodule. First you have to get the
 **information** about the submodule, this is retrieved by a normal
-`git pull`. If there are new submodules you'll see it in the output of
-`git pull`. Then you'll have to initiate them with:
+`git fetch`. If there are new submodules you'll see it in the output of
+`git fetch`. Then you'll have to initiate them with:
 
     git submodule init
 
-This will pull all the **code** from the submodule and place it in the
-directory that it's configured to.
+This command is initalizing the local git configuration with the submodules list, retrieved from the .gitmodules file.
 
 If you've cloned a repository that makes use of submodules, you should
 also run this command to get the submodule's code. This is not
@@ -73,7 +72,7 @@ automatically done by `git clone`.
 
 ### Pushing updates in the submodule
 
-The submodule is just a separate resository. If you want to make changes
+The submodule is just a separate repository. If you want to make changes
 to it, you should make the changes in this repository and push them like
 in a regular Git repository (just execute the git commands in the
 submodule's directory). However, you should also let the **main**
@@ -99,13 +98,10 @@ this change with `git add` and then commit and push it.
 ### Keeping your submodules up-to-date
 
 If someone updated a submodule, the other team-members should update
-the code of their submodules. This is not automatically done by
-`git pull`, because with `git pull` it only retrieves the
-**information** that the submodule is **pointing** to another
-**commit**, but doesn't update the submodule's **code**. To update the
+the code of their submodules. To update the
 **code** of your submodules, you should run:
 
-    git submodule update
+    git submodule update --remote
 
 #### What happens if you don't run this command?
 
@@ -126,8 +122,9 @@ submodules. Fortunately, there are some tricks to make it easier:
 
     git submodule update --init
 
-This will update the submodules, and if they're not initiated yet, will
-initiate them.
+This will initialize the git configuration with the submodules list 
+retrieved from the .gitmodules file and clone the submodule repository 
+into the project repository.
 
 You can also have submodules **inside** of submodules. In this case you'll
 want to update/initiate the submodules recursively:
