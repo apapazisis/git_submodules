@@ -25,13 +25,7 @@ useful. A couple of advantages of using submodules:
 ### Basics
 
 When you add a submodule in Git, you add the **code** of the
-submodule to the main repository, you only add **information about the
-submodule** that is added to the main repository. This information
-describes which **commit the submodule is pointing** at. This way, the
-submodule's **code** won't automatically be updated if the submodule's
-**repository** is updated. This is good, because your code might not
-work with the latest commit of the submodule, it prevents unexpected
-behaviour.
+submodule to the main repository.
 
 
 ### Adding a submodule
